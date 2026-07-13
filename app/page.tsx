@@ -22,12 +22,6 @@ const features = [
   [ShieldCheck, '100% local and private', 'No analytics, no browsing history, and no gallery data leaves your device.'],
 ] as const
 
-const testimonials = [
-  ['AM', 'Avery Martin', 'Power user', 'I can review long inspiration boards without constantly clicking. It is simple, fast, and stays out of the way.'],
-  ['JL', 'Jamie Lee', 'Photographer', 'GalleryPilot turns client selects into a smooth viewing session. The local-only approach is exactly what I wanted.'],
-  ['RK', 'Riley Khan', 'Researcher', 'The video-aware playback and keyboard controls make visual research much less tedious.'],
-]
-
 function BrowserFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-xl shadow-foreground/5">
@@ -59,18 +53,17 @@ export default function Page() {
                 <Link href="#pricing" className="flex min-h-12 items-center justify-center rounded-full bg-accent px-7 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">Add to Chrome — Free</Link>
                 <Link href="#how-it-works" className="flex min-h-12 items-center justify-center rounded-full border border-border bg-card px-7 font-semibold transition-colors hover:bg-muted">See how it works</Link>
               </div>
-              <p className="mt-5 text-sm text-muted-foreground">4.8 rating · 50k+ installs · 100% local</p>
+              <p className="mt-5 text-sm text-muted-foreground">Core playback is free · 100% local · No analytics</p>
             </Reveal>
-            <Reveal delay={0.15} className="mt-14">
-              <BrowserFrame src="https://placehold.co/1280x800/17171F/8B8BE8?text=GalleryPilot+Popup+%E2%80%94+Replace+Me" alt="Replaceable placeholder showing the GalleryPilot popup over a gallery" />
+            <Reveal delay={0.15} className="mx-auto mt-14 max-w-4xl">
+              <BrowserFrame src="/gallerypilot-popup.jpeg" alt="GalleryPilot extension popup with playback, media filters, pacing, mute, and Pro controls" />
             </Reveal>
           </div>
         </section>
 
-        <section className="border-y border-border bg-muted/50 px-5 py-8" aria-label="Supported gallery platforms">
-          <div className="mx-auto max-w-6xl text-center">
-            <p className="text-sm font-medium text-muted-foreground">Works on your favorite gallery sites</p>
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-lg font-semibold text-muted-foreground/70"><span>Pixieset</span><span>Pic-Time</span><span>Unsplash</span><span>Google Photos</span><span>Behance</span></div>
+        <section className="border-y border-border bg-muted/50 px-5 py-8" aria-label="Privacy highlights">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold text-muted-foreground">
+            <span>No host permissions</span><span>No remote code</span><span>No downloads</span><span>No access-control bypass</span>
           </div>
         </section>
 
@@ -94,25 +87,31 @@ export default function Page() {
         </section>
 
         <section className="px-5 py-24 lg:px-8">
-          <div className="mx-auto max-w-6xl"><Reveal className="text-center"><p className="font-mono text-sm font-semibold uppercase tracking-widest text-primary">Made to disappear</p><h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">A focused viewer for every gallery</h2></Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-3">{[['Popup UI','Popup'],['In-page player','Player'],['Simple settings','Settings']].map(([caption,label], i) => <Reveal key={label} delay={i * .06}><figure><BrowserFrame src={`https://placehold.co/800x500/17171F/8B8BE8?text=GalleryPilot+${label}+%E2%80%94+Replace+Me`} alt={`Replaceable ${caption} placeholder`} /><figcaption className="mt-4 text-center text-sm font-medium text-muted-foreground">{caption}</figcaption></figure></Reveal>)}</div>
+          <div className="mx-auto max-w-5xl">
+            <Reveal className="text-center"><p className="font-mono text-sm font-semibold uppercase tracking-widest text-primary">See it in action</p><h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">A focused viewer that stays out of the way</h2><p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">Choose what to show, set the pace, and start playback without sending the gallery anywhere.</p></Reveal>
+            <Reveal delay={0.1} className="mt-12 overflow-hidden rounded-2xl border border-border bg-card p-2 shadow-xl shadow-foreground/5">
+              <video className="aspect-video w-full rounded-xl bg-muted object-cover" controls muted playsInline preload="metadata" poster="/gallerypilot-popup.jpeg" aria-label="GalleryPilot product demonstration">
+                <source src="/gallerypilot-demo.mp4" type="video/mp4" />
+                Your browser does not support this GalleryPilot demonstration video.
+              </video>
+            </Reveal>
           </div>
         </section>
 
-        <section className="bg-muted/50 px-5 py-24 lg:px-8"><div className="mx-auto max-w-6xl"><Reveal className="text-center"><h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">A calmer way to browse</h2></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{testimonials.map(([initials,name,role,quote]) => <article key={name} className="rounded-2xl border border-border bg-card p-7"><p className="text-lg leading-relaxed">“{quote}”</p><div className="mt-7 flex items-center gap-3"><span className="flex size-10 items-center justify-center rounded-full bg-secondary text-sm font-bold text-primary">{initials}</span><div><p className="font-semibold">{name}</p><p className="text-sm text-muted-foreground">{role}</p></div></div></article>)}</div></div></section>
+        <section className="bg-muted/50 px-5 py-24 lg:px-8"><div className="mx-auto max-w-6xl"><Reveal className="text-center"><h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">Small permissions. Clear purpose.</h2><p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground">GalleryPilot uses temporary access only when you start it on the active tab.</p></Reveal><div className="mt-12 grid gap-5 md:grid-cols-3">{[['activeTab','Temporary access to the page you explicitly start GalleryPilot on.'],['scripting','Runs the slideshow controls on that active page only.'],['storage','Keeps your extension preferences on your device.']].map(([name,copy]) => <article key={name} className="rounded-2xl border border-border bg-card p-7"><p className="font-mono text-sm font-semibold text-primary">{name}</p><p className="mt-3 leading-relaxed text-muted-foreground">{copy}</p></article>)}</div></div></section>
 
         <section id="pricing" className="scroll-mt-20 px-5 py-24 lg:px-8"><div className="mx-auto max-w-5xl"><Reveal className="text-center"><p className="font-mono text-sm font-semibold uppercase tracking-widest text-primary">Simple pricing</p><h2 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">Start free. Upgrade when you want more.</h2></Reveal><div className="mt-12 grid gap-6 md:grid-cols-2">
           <article className="rounded-2xl border border-border bg-card p-8"><h3 className="text-2xl font-semibold">Free</h3><p className="mt-4 text-4xl font-semibold">$0</p><p className="mt-2 text-muted-foreground">Core playback for every gallery.</p><ul className="mt-8 flex flex-col gap-4">{['Photo and video playback','All viewing modes','Keyboard controls','Local-only privacy'].map(x => <li key={x} className="flex gap-3"><Check className="mt-0.5 size-5 text-primary" />{x}</li>)}</ul><Link href="#" className="mt-9 flex min-h-12 items-center justify-center rounded-full border border-border font-semibold hover:bg-muted">Add to Chrome</Link></article>
-          <article className="relative rounded-2xl border-2 border-accent bg-card p-8 shadow-xl shadow-accent/10"><span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">Most popular</span><h3 className="text-2xl font-semibold">Pro</h3><p className="mt-4 text-4xl font-semibold">$5<span className="text-base font-normal text-muted-foreground">/mo</span></p><p className="mt-2 text-muted-foreground">Power presets and priority support.</p><ul className="mt-8 flex flex-col gap-4">{['Everything in Free','Cinema, Quick Scan, and Video Focus','One-click preset switching','Priority support'].map(x => <li key={x} className="flex gap-3"><Check className="mt-0.5 size-5 text-primary" />{x}</li>)}</ul><Link href="#" className="mt-9 flex min-h-12 items-center justify-center rounded-full bg-accent font-semibold text-accent-foreground hover:opacity-90">Choose Pro</Link><p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">Secure checkout hosted by Stripe. No payment data enters the extension.</p></article>
+          <article className="relative rounded-2xl border-2 border-accent bg-card p-8 shadow-xl shadow-accent/10"><span className="absolute right-6 top-6 rounded-full bg-accent px-3 py-1 text-xs font-bold text-accent-foreground">One-time</span><h3 className="text-2xl font-semibold">Pro</h3><p className="mt-4 text-4xl font-semibold">€9.90</p><p className="mt-2 text-muted-foreground">Power presets with a single upgrade.</p><ul className="mt-8 flex flex-col gap-4">{['Everything in Free','Cinema, Quick Scan, and Video Focus','One-click preset switching','No recurring subscription'].map(x => <li key={x} className="flex gap-3"><Check className="mt-0.5 size-5 text-primary" />{x}</li>)}</ul><Link href="#" className="mt-9 flex min-h-12 items-center justify-center rounded-full bg-accent font-semibold text-accent-foreground hover:opacity-90">Choose Pro</Link><p className="mt-4 text-center text-xs leading-relaxed text-muted-foreground">Secure checkout hosted by Stripe. No payment data enters the extension.</p></article>
         </div></div></section>
 
         <section id="faq" className="scroll-mt-20 bg-muted/50 px-5 py-24 lg:px-8"><div className="mx-auto max-w-3xl"><Reveal className="text-center"><h2 className="text-4xl font-semibold tracking-tight sm:text-5xl">Questions, answered</h2></Reveal><div className="mt-10 flex flex-col gap-3">{[
-          ['What sites does it work on?', 'GalleryPilot works on most pages that display standard images or videos, including popular portfolio, photo, and inspiration sites.'],
+          ['What pages does it work on?', 'GalleryPilot is designed for pages that display standard images or videos. It works only on the active tab where you explicitly start it.'],
           ['Is my browsing data collected?', 'No. GalleryPilot runs locally, uses no analytics, and does not collect your browsing history or gallery content.'],
           ['Does it download media or bypass logins?', 'No. It only displays media already available to you on the open page. It does not download files or bypass access controls.'],
           ['How does Pro work? Can I redeem a code?', 'Pro checkout is hosted securely by Stripe. After purchase, follow the activation instructions to unlock presets or redeem an eligible code.'],
           ['Is it really free?', 'Yes. Core slideshow playback, viewing modes, keyboard controls, and privacy features are free.'],
-          ['How do I install it?', 'Install from the Chrome Web Store for Chrome, Edge, or Brave. Advanced users can side-load a compatible build in Firefox.'],
+          ['How do I install it?', 'Install GalleryPilot from its official browser extension listing, then pin the icon for quick access.'],
         ].map(([q,a]) => <details key={q} className="group rounded-xl border border-border bg-card p-5"><summary className="cursor-pointer list-none font-semibold marker:hidden">{q}<span className="float-right text-primary group-open:rotate-45">+</span></summary><p className="mt-3 pr-8 leading-relaxed text-muted-foreground">{a}</p></details>)}</div></div></section>
 
         <section className="bg-primary px-5 py-20 text-primary-foreground lg:px-8"><div className="mx-auto max-w-4xl text-center"><h2 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">Start watching hands-free in seconds</h2><p className="mx-auto mt-4 max-w-2xl text-primary-foreground/80">One click to start. Your gallery stays on your device.</p><Link href="#pricing" className="mt-8 inline-flex min-h-12 items-center rounded-full bg-accent px-7 font-semibold text-accent-foreground">Add to Chrome — Free</Link><p className="mt-5 text-sm text-primary-foreground/75">Private by design · No analytics · No browsing history collected</p></div></section>
