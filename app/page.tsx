@@ -50,7 +50,9 @@ export default function Page() {
               <h1 className="mx-auto max-w-4xl text-balance text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">Turn any gallery into a hands-free slideshow.</h1>
               <p className="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">GalleryPilot turns any page of images and videos into a private, hands-free slideshow—one click, no uploads, no tracking.</p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <Link href="#pricing" className="flex min-h-12 items-center justify-center rounded-full bg-accent px-7 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">Add to Chrome — Free</Link>
+                <Link href="https://chromewebstore.google.com/detail/gallerypilot-%E2%80%94-page-slide/hieimlenfnplaaododphkaogpjohlpob"
+                target='_blank'
+                className="flex min-h-12 items-center justify-center rounded-full bg-accent px-7 font-semibold text-accent-foreground transition-transform hover:-translate-y-0.5">Add to Chrome — Free</Link>
                 <Link href="#how-it-works" className="flex min-h-12 items-center justify-center rounded-full border border-border bg-card px-7 font-semibold transition-colors hover:bg-muted">See how it works</Link>
               </div>
               <p className="mt-5 text-sm text-muted-foreground">Core playback is free · 100% local · No analytics</p>
