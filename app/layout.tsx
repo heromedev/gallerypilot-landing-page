@@ -1,28 +1,27 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: { default: 'GalleryPilot — Curate galleries faster', template: '%s | GalleryPilot' },
-  description: 'A privacy-first browser extension that helps photographers review, curate, and deliver client galleries faster.',
-  generator: 'v0.app',
+  title: { default: 'EroPilot — Your private gallery on autopilot', template: '%s | EroPilot' },
+  description: 'A private, hands-free gallery viewer that runs locally in your browser. No uploads, analytics, or browsing history collection.',
+  metadataBase: new URL('https://eromepilot.vercel.app'),
+  openGraph: { title: 'EroPilot — Your private gallery on autopilot', description: 'Open. Start. Lean back. Your gallery stays on your device.', type: 'website' },
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark', width: 'device-width', initialScale: 1,
-  themeColor: [{ media: '(prefers-color-scheme: light)', color: '#faf9f7' }, { media: '(prefers-color-scheme: dark)', color: '#171621' }],
+  colorScheme: 'dark', width: 'device-width', initialScale: 1,
+  themeColor: '#0a0a0f',
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="bg-background">
+    <html lang="en" className="bg-background dark">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <Script id="theme-init" strategy="beforeInteractive">{`try{const t=localStorage.getItem('theme');document.documentElement.classList.toggle('dark',t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))}catch(e){}`}</Script>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
