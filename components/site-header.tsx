@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ArrowUpRight, Menu, Moon, Play, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { MobileNav } from '@/components/reveal'
 
 const STORE_URL = 'https://chromewebstore.google.com/detail/gallerypilot-%E2%80%94-page-slide/hieimlenfnplaaododphkaogpjohlpob'
 const links = [
@@ -51,10 +52,12 @@ export function SiteHeader() {
           </button>
         </div>
       </div>
-      {open && <nav id="mobile-nav" className="flex flex-col gap-1 border-t border-border bg-background px-5 py-4 md:hidden" aria-label="Mobile navigation">
-        {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium hover:bg-muted">{link.label}</Link>)}
-        <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="mt-2 flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">Add to Chrome</Link>
-      </nav>}
+      <MobileNav open={open}>
+        <nav id="mobile-nav" className="flex flex-col gap-1 border-t border-border bg-background px-5 py-4" aria-label="Mobile navigation">
+          {links.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium hover:bg-muted">{link.label}</Link>)}
+          <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="mt-2 flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">Add to Chrome</Link>
+        </nav>
+      </MobileNav>
     </header>
   )
 }
