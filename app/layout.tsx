@@ -13,6 +13,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="bg-background dark">
+      <head>
+        <meta name="6a97888e-site-verification" content="2f5d8d0eb9897bcf65c70108a9d43d11" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
       </body>
