@@ -55,7 +55,7 @@ export function AffiliateBanner() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            Partner
+            Keep it free
           </motion.p>
 
           <motion.h2
@@ -65,7 +65,7 @@ export function AffiliateBanner() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
           >
-            Explore live experiences
+            Help us keep GalleryPilot free
           </motion.h2>
 
           <motion.p
@@ -75,7 +75,7 @@ export function AffiliateBanner() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.9, delay: 0.2, ease: EASE }}
           >
-            Watch live streams, chat with creators, and discover new content.
+            Check out our partners below — visiting their sites helps us keep the extension free for everyone.
           </motion.p>
 
           <motion.a
