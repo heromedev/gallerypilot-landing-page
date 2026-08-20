@@ -44,7 +44,7 @@ export function SiteHeader({ dictionary: t, locale }: SiteHeaderProps) {
     const key = link.href.split('#')[1]
     if (key === 'features') return { ...link, label: t.featuresSection.label }
     if (key === 'demo') return { ...link, label: t.demoSection.label }
-    if (key === 'pricing') return { ...link, label: t.pricingSection.tierName }
+    if (key === 'pricing') return { ...link, label: 'Pro' }
     if (key === 'faq') return { ...link, label: t.faqSection.label }
     return link
   })

@@ -31,7 +31,7 @@ function ExoClickAd() {
   }, [])
 
   return (
-    <div ref={containerRef} className="flex items-center justify-center">
+    <div ref={containerRef} className="mx-auto flex h-[250px] w-[300px] items-center justify-center lg:mx-0">
       <ins className="eas6a97888e2" data-zoneid="6007880" />
     </div>
   )
