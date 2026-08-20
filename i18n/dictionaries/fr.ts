@@ -50,13 +50,37 @@ const fr: Dictionary = {
   pricingSection: {
     label: 'Une mise à niveau honnête',
     heading: 'Commencez gratuitement.\nMettez à niveau quand vous voulez.',
-    description: 'La lecture de base est gratuite. Pro ajoute des préréglages ciblés avec un abonnement mensuel — annulez quand vous voulez.',
-    tierName: 'Pro',
-    price: '7,99 $',
-    frequency: '/mois',
-    features: ['Tout dans Gratuit', 'Préréglage Cinéma', 'Préréglage Quick Scan', 'Préréglage Focus Vidéo', 'Basculement en un clic', 'Annulation possible'],
-    cta: 'Débloquer Pro',
+    description: 'La lecture de base est gratuite. Pro ajoute des préréglages ciblés et l\'accès au Vault — annulez quand vous voulez.',
+    tiers: [
+      {
+        name: 'Gratuit',
+        price: '0 $',
+        frequency: 'pour toujours',
+        features: ['Lecture de diaporama de base', 'Modes de visualisation', 'Contrôles clavier', 'Confidentialité locale'],
+        cta: 'Commencer',
+      },
+      {
+        name: 'Pro',
+        price: '7,99 $',
+        frequency: '/mois',
+        badge: 'Le plus populaire',
+        features: ['Tout dans Gratuit', 'Préréglage Cinéma', 'Préréglage Quick Scan', 'Préréglage Focus Vidéo', 'Basculement en un clic', 'Vault — collections chiffrées', 'Annulation possible'],
+        cta: 'Débloquer Pro',
+      },
+    ],
     disclaimer: 'Paiement sécurisé par Stripe. Les données de paiement n\'entrent jamais dans l\'extension.',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: 'Vos collections,\nsous clé.',
+    description: 'Stockage chiffré et local pour les médias qui vous tiennent à cœur. Architecture zéro connaissance — même nous ne pouvons pas voir ce que vous sauvegardez.',
+    features: [
+      { title: 'Chiffrement zéro connaissance', copy: 'Chiffrement AES-256 qui ne quitte jamais votre appareil. Vos données, vos clés.' },
+      { title: 'Traitement local', copy: 'Tout fonctionne dans le navigateur. Pas de sync cloud, pas de serveurs, pas d\'exposition.' },
+      { title: 'Collections chiffrées', copy: 'Groupez et organisez les médias sauvegardés dans des collections verrouillables.' },
+      { title: 'Protection biométrique', copy: 'Verrouillez votre Vault avec empreinte digitale ou reconnaissance faciale.' },
+      { title: 'Partage sécurisé', copy: 'Générez des liens chiffrés à durée limitée. Partagez selon vos termes.' },
+    ],
   },
   faqSection: {
     label: 'Réponses',

@@ -50,13 +50,37 @@ const pt: Dictionary = {
   pricingSection: {
     label: 'Uma atualização honesta',
     heading: 'Comece grátis.\nFaça upgrade quando quiser.',
-    description: 'A reprodução básica não custa nada. Pro adiciona predefinições focadas com uma assinatura mensal — cancele quando quiser.',
-    tierName: 'Pro',
-    price: 'US$ 7,99',
-    frequency: '/mês',
-    features: ['Tudo no Grátis', 'Predefinição Cinema', 'Predefinição Quick Scan', 'Predefinição Video Focus', 'Troca com um clique', 'Cancele quando quiser'],
-    cta: 'Desbloquear Pro',
+    description: 'A reprodução básica não custa nada. Pro adiciona predefinições focadas e acesso ao Vault — cancele quando quiser.',
+    tiers: [
+      {
+        name: 'Grátis',
+        price: 'R$ 0',
+        frequency: 'para sempre',
+        features: ['Reprodução de slideshow básica', 'Modos de visualização', 'Controles de teclado', 'Privacidade local'],
+        cta: 'Começar',
+      },
+      {
+        name: 'Pro',
+        price: 'US$ 7,99',
+        frequency: '/mês',
+        badge: 'Mais popular',
+        features: ['Tudo no Grátis', 'Predefinição Cinema', 'Predefinição Quick Scan', 'Predefinição Video Focus', 'Troca com um clique', 'Vault — coleções criptografadas', 'Cancele quando quiser'],
+        cta: 'Desbloquear Pro',
+      },
+    ],
     disclaimer: 'Pagamento seguro via Stripe. Dados de pagamento nunca entram na extensão.',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: 'Suas coleções,\ntrancadas.',
+    description: 'Armazenamento criptografado e local para as mídias que importam. Arquitetura de conhecimento zero — nem nós podemos ver o que você salva.',
+    features: [
+      { title: 'Criptografia de conhecimento zero', copy: 'Criptografia AES-256 que nunca sai do seu dispositivo. Seus dados, suas chaves.' },
+      { title: 'Processamento local', copy: 'Tudo roda no navegador. Sem sincronização na nuvem, sem servidores.' },
+      { title: 'Coleções criptografadas', copy: 'Agrupe e organize mídias salvas em coleções com cadeado.' },
+      { title: 'Proteção biométrica', copy: 'Trave seu Vault com impressão digital ou reconhecimento facial.' },
+      { title: 'Compartilhamento seguro', copy: 'Gere links criptografados com tempo limitado. Compartilhe nos seus termos.' },
+    ],
   },
   faqSection: {
     label: 'Respostas',

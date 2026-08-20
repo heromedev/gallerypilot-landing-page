@@ -50,13 +50,37 @@ const zh: Dictionary = {
   pricingSection: {
     label: '诚实的升级',
     heading: '免费开始。\n随时升级。',
-    description: '基础播放完全免费。Pro 通过月度订阅添加专注预设 — 随时可取消。',
-    tierName: 'Pro',
-    price: '$7.99',
-    frequency: '/月',
-    features: ['免费版所有功能', '影院预设', '快速扫描预设', '视频聚焦预设', '一键切换', '随时可取消'],
-    cta: '解锁 Pro',
+    description: '基础播放完全免费。Pro 通过专注预设和 Vault 访问 — 随时可取消。',
+    tiers: [
+      {
+        name: '免费',
+        price: '¥0',
+        frequency: '永久',
+        features: ['基础幻灯片播放', '观看模式', '键盘控制', '本地隐私'],
+        cta: '开始使用',
+      },
+      {
+        name: 'Pro',
+        price: '$7.99',
+        frequency: '/月',
+        badge: '最受欢迎',
+        features: ['免费版所有功能', '影院预设', '快速扫描预设', '视频聚焦预设', '一键切换', 'Vault — 加密收藏', '随时可取消'],
+        cta: '解锁 Pro',
+      },
+    ],
     disclaimer: 'Stripe 安全结账。支付数据绝不进入扩展程序。',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: '您的收藏，\n锁好。',
+    description: '为重要媒体提供加密本地存储。零知识架构 — 连我们都不知道您保存了什么。',
+    features: [
+      { title: '零知识加密', copy: 'AES-256 加密永远不会离开您的设备。您的数据，您的密钥。' },
+      { title: '本地处理', copy: '一切在浏览器中运行。无云同步、无服务器、无暴露。' },
+      { title: '加密收藏', copy: '将保存的媒体分组整理到可锁定的收藏中。' },
+      { title: '生物识别保护', copy: '使用指纹或面部识别锁定您的 Vault。' },
+      { title: '安全共享', copy: '生成限时加密链接。按您的条件分享。' },
+    ],
   },
   faqSection: {
     label: '回答',

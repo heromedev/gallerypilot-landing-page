@@ -50,13 +50,37 @@ const ko: Dictionary = {
   pricingSection: {
     label: '정직한 업그레이드',
     heading: '무료로 시작.\n언제든지 업그레이드.',
-    description: '기본 재생은 무료입니다. Pro는 월간 구독으로 집중 프리셋을 추가 — 언제든지 해지 가능.',
-    tierName: 'Pro',
-    price: '$7.99',
-    frequency: '/월',
-    features: ['무료版 모든 것', '시네마 프리셋', 'Quick Scan 프리셋', 'Video Focus 프리셋', '원클릭 전환', '언제든지 해지 가능'],
-    cta: 'Pro 잠금 해제',
+    description: '기본 재생은 무료입니다. Pro는 집중 프리셋과 Vault 접근을 추가 — 언제든지 해지 가능.',
+    tiers: [
+      {
+        name: '무료',
+        price: '₩0',
+        frequency: '영원히',
+        features: ['기본 슬라이드쇼 재생', '시청 모드', '키보드 컨트롤', '로컬 프라이버시'],
+        cta: '시작하기',
+      },
+      {
+        name: 'Pro',
+        price: '$7.99',
+        frequency: '/월',
+        badge: '가장 인기',
+        features: ['무료版 모든 것', '시네마 프리셋', 'Quick Scan 프리셋', 'Video Focus 프리셋', '원클릭 전환', 'Vault — 암호화 컬렉션', '언제든지 해지 가능'],
+        cta: 'Pro 잠금 해제',
+      },
+    ],
     disclaimer: 'Stripeによる安全な決済. 결제 데이터는 확장 프로그램에 들어가지 않습니다.',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: '당신의 컬렉션,\n잠금 처리.',
+    description: '중요한 미디어를 위한 암호화 로컬 스토리지. 제로 노우지 아키텍처 — 우리도 저장한 것을 볼 수 없습니다.',
+    features: [
+      { title: '제로 노우지 암호화', copy: '기기를 벗어나지 않는 AES-256 암호화. 당신의 데이터, 당신의 키.' },
+      { title: '로컬 처리', copy: '모두 브라우저에서 실행. 클라우드 동기화 없음, 서버 없음.' },
+      { title: '암호화 컬렉션', copy: '저장된 미디어를 잠글 수 있는 컬렉션으로 그룹화.' },
+      { title: '생체 인증 보호', copy: '지문 또는 얼굴 인식으로 Vault를 잠그세요.' },
+      { title: '안전한 공유', copy: '제한된 시간의 암호화 링크를 생성. 당신의 조건으로 공유.' },
+    ],
   },
   faqSection: {
     label: '답변',

@@ -50,13 +50,37 @@ const es: Dictionary = {
   pricingSection: {
     label: 'Una actualización honesta',
     heading: 'Empieza gratis.\nMejora cuando quieras.',
-    description: 'La reproducción básica no cuesta nada. Pro añade ajustes preestablecidos con una suscripción mensual — cancela cuando quieras.',
-    tierName: 'Pro',
-    price: '7,99 $',
-    frequency: '/mes',
-    features: ['Todo en Gratis', 'Ajuste Cine', 'Ajuste Quick Scan', 'Ajuste Video Focus', 'Cambio con un clic', 'Cancela cuando quieras'],
-    cta: 'Desbloquear Pro',
+    description: 'La reproducción básica no cuesta nada. Pro añade ajustes preestablecidos y acceso al Vault — cancela cuando quieras.',
+    tiers: [
+      {
+        name: 'Gratis',
+        price: '0 $',
+        frequency: 'para siempre',
+        features: ['Reproducción de presentación básica', 'Modos de visualización', 'Controles de teclado', 'Privacidad local'],
+        cta: 'Empezar',
+      },
+      {
+        name: 'Pro',
+        price: '7,99 $',
+        frequency: '/mes',
+        badge: 'El más popular',
+        features: ['Todo en Gratis', 'Ajuste Cine', 'Ajuste Quick Scan', 'Ajuste Video Focus', 'Cambio con un clic', 'Vault — colecciones encriptadas', 'Cancela cuando quieras'],
+        cta: 'Desbloquear Pro',
+      },
+    ],
     disclaimer: 'Pago seguro por Stripe. Los datos de pago nunca entran en la extensión.',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: 'Tus colecciones,\nbajo llave.',
+    description: 'Almacenamiento encriptado y local para los medios que te importan. Arquitectura de conocimiento cero — ni siquiera nosotros podemos ver lo que guardas.',
+    features: [
+      { title: 'Encriptación de conocimiento cero', copy: 'Encriptación AES-256 que nunca sale de tu dispositivo. Tus datos, tus claves.' },
+      { title: 'Procesamiento local', copy: 'Todo funciona en el navegador. Sin sincronización en la nube, sin servidores.' },
+      { title: 'Colecciones encriptadas', copy: 'Agrupa y organiza medios guardados en colecciones con candado.' },
+      { title: 'Protección biométrica', copy: 'Bloquea tu Vault con huella digital o reconocimiento facial.' },
+      { title: 'Compartición segura', copy: 'Genera enlaces encriptados de tiempo limitado. Comparte en tus términos.' },
+    ],
   },
   faqSection: {
     label: 'Respuestas',

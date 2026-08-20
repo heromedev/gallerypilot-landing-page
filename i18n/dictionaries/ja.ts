@@ -50,13 +50,37 @@ const ja: Dictionary = {
   pricingSection: {
     label: '正直なアップグレード',
     heading: '無料で始め。\nいつでもアップグレード。',
-    description: '基本再生は無料。プロは月額サブスクリプションで集中プリセットを追加 — いつでも解約可能。',
-    tierName: 'Pro',
-    price: '$7.99',
-    frequency: '/月',
-    features: ['無料版すべて', 'シネマプリセット', 'Quick Scanプリセット', 'Video Focusプリセット', 'ワンクリック切替', 'いつでも解約可能'],
-    cta: 'プロを解除',
+    description: '基本再生は無料。プロは集中プリセットとVaultアクセスを追加 — いつでも解約可能。',
+    tiers: [
+      {
+        name: '無料',
+        price: '¥0',
+        frequency: '永久',
+        features: ['基本スライドショー再生', '表示モード', 'キーボードコントロール', 'ローカルプライバシー'],
+        cta: '始める',
+      },
+      {
+        name: 'Pro',
+        price: '$7.99',
+        frequency: '/月',
+        badge: '一番人気',
+        features: ['無料版すべて', 'シネマプリセット', 'Quick Scanプリセット', 'Video Focusプリセット', 'ワンクリック切替', 'Vault —暗号化コレクション', 'いつでも解約可能'],
+        cta: 'プロを解除',
+      },
+    ],
     disclaimer: 'Stripeによる安全な決済。支払いデータは拡張機能に入りません。',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: 'あなたのコレクション。\n鍵をかけて。',
+    description: '大切なメディアのための暗号化ローカルストレージ。ゼロナレッジアーキテクチャ — 私たちでさえ保存したものが見えません。',
+    features: [
+      { title: 'ゼロナレッジ暗号化', copy: 'デバイスを出てこないAES-256暗号化。あなたのデータ、あなたの鍵。' },
+      { title: 'ローカル処理', copy: 'すべてブラウザ内で動作。クラウド同期なし、サーバーなし。' },
+      { title: '暗号化コレクション', copy: '保存メディアをロック可能なコレクションに整理。' },
+      { title: '生体認証保護', copy: '指紋または顔認識でVaultをロック。' },
+      { title: '安全な共有', copy: '有効期限付き暗号化リンクを生成。あなたの条件で共有。' },
+    ],
   },
   faqSection: {
     label: '回答',

@@ -37,12 +37,21 @@ export type Dictionary = {
     label: string
     heading: string
     description: string
-    tierName: string
-    price: string
-    frequency: string
-    features: string[]
-    cta: string
+    tiers: {
+      name: string
+      price: string
+      frequency: string
+      features: string[]
+      cta: string
+      badge?: string
+    }[]
     disclaimer: string
+  }
+  vaultSection: {
+    label: string
+    heading: string
+    description: string
+    features: { title: string; copy: string }[]
   }
   faqSection: {
     label: string

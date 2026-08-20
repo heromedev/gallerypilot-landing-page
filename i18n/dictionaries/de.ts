@@ -50,13 +50,37 @@ const de: Dictionary = {
   pricingSection: {
     label: 'Ein ehrliches Upgrade',
     heading: 'Starten Sie kostenlos.\nJederzeit upgraden.',
-    description: 'Basiswiedergabe kostet nichts. Pro fügt fokussierte Voreinstellungen mit einem monatlichen Abonnement hinzu — jederzeit kündbar.',
-    tierName: 'Pro',
-    price: '7,99 $',
-    frequency: '/Monat',
-    features: ['Alles in Kostenlos', 'Kino-Voreinstellung', 'Quick Scan-Voreinstellung', 'Video Focus-Voreinstellung', 'Ein-Klick-Umschaltung', 'Jederzeit kündbar'],
-    cta: 'Pro freischalten',
+    description: 'Basiswiedergabe kostet nichts. Pro fügt fokussierte Voreinstellungen und Vault-Zugang hinzu — jederzeit kündbar.',
+    tiers: [
+      {
+        name: 'Kostenlos',
+        price: '0 $',
+        frequency: 'für immer',
+        features: ['Basis-Diashow-Wiedergabe', 'Betrachtungsmodi', 'Tastatursteuerung', 'Lokaler Datenschutz'],
+        cta: 'Loslegen',
+      },
+      {
+        name: 'Pro',
+        price: '7,99 $',
+        frequency: '/Monat',
+        badge: 'Am beliebtesten',
+        features: ['Alles in Kostenlos', 'Kino-Voreinstellung', 'Quick Scan-Voreinstellung', 'Video Focus-Voreinstellung', 'Ein-Klick-Umschaltung', 'Vault — verschlüsselte Sammlungen', 'Jederzeit kündbar'],
+        cta: 'Pro freischalten',
+      },
+    ],
     disclaimer: 'Sichere Zahlung über Stripe. Zahlungsdaten gelangen nie in die Erweiterung.',
+  },
+  vaultSection: {
+    label: 'Vault',
+    heading: 'Ihre Sammlungen,\nverschlossen.',
+    description: 'Verschlüsselter lokaler Speicher für die Medien, die Ihnen wichtig sind. Zero-Knowledge-Architektur — sogar wir können nicht sehen, was Sie speichern.',
+    features: [
+      { title: 'Zero-Knowledge-Verschlüsselung', copy: 'AES-256-Verschlüsselung, die Ihr Gerät nie verlässt. Ihre Daten, Ihre Schlüssel.' },
+      { title: 'Lokale Verarbeitung', copy: 'Alles läuft im Browser. Kein Cloud-Sync, keine Server, keine Exposition.' },
+      { title: 'Verschlüsselte Sammlungen', copy: 'Gruppieren und organisieren Sie gespeicherte Medien in sperrbaren Sammlungen.' },
+      { title: 'Biometrischer Schutz', copy: 'Sperren Sie Ihr Vault mit Fingerabdruck oder Gesichtserkennung.' },
+      { title: 'Sichere Weitergabe', copy: 'Erzeugen Sie zeitlich begrenzte verschlüsselte Links. Teilen Sie Ihren Bedingungen.' },
+    ],
   },
   faqSection: {
     label: 'Antworten',
