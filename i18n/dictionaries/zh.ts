@@ -20,7 +20,7 @@ const zh: Dictionary = {
   },
   marquee: ['无宿主权限', '无远程代码', '无下载', '无访问控制绕过', '无账户', '无分析'],
   featuresSection: {
-    label: '为流畅而生',
+    label: '流畅',
     heading: '您与下一帧之间，毫无阻碍。',
     description: '精心设计的控制。无杂乱。每个功能都为让观看毫不费力而存在。',
   },
@@ -32,7 +32,7 @@ const zh: Dictionary = {
     { title: '您的画廊始终属于您。', copy: '一切本地运行。无上传、无分析、无浏览历史收集。' },
   ],
   demoSection: {
-    label: '产品，非承诺',
+    label: '真实产品',
     heading: '看看副驾驶的工作方式。',
     description: '选择显示内容、设定节奏、开始 — 无需将画廊发送到任何地方。',
     videoLabel: 'EroPilot 产品演示',
@@ -49,17 +49,17 @@ const zh: Dictionary = {
   },
   pricingSection: {
     label: '诚实的升级',
-    heading: '免费开始。\n永久保留。',
-    description: '基础播放完全免费。Pro 通过一次付款添加专注预设 — 小字中没有隐藏订阅。',
-    tierName: 'EroPilot Pro',
-    price: '€9.90',
-    frequency: '一次性',
-    features: ['免费版所有功能', '影院预设', '快速扫描预设', '视频聚焦预设', '一键切换', '无经常性费用'],
+    heading: '免费开始。\n随时升级。',
+    description: '基础播放完全免费。Pro 通过月度订阅添加专注预设 — 随时可取消。',
+    tierName: 'Pro',
+    price: '$7.99',
+    frequency: '/月',
+    features: ['免费版所有功能', '影院预设', '快速扫描预设', '视频聚焦预设', '一键切换', '随时可取消'],
     cta: '解锁 Pro',
     disclaimer: 'Stripe 安全结账。支付数据绝不进入扩展程序。',
   },
   faqSection: {
-    label: '明确的回答',
+    label: '回答',
     heading: '私密就是私密。',
     items: [
       { q: '适用于哪些页面？', a: 'EroPilot 专为显示标准图片或视频的页面设计。仅在您启动它的活动标签页上运行。' },

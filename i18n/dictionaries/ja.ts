@@ -20,7 +20,7 @@ const ja: Dictionary = {
   },
   marquee: ['ホスト権限なし', 'リモートコードなし', 'ダウンロードなし', 'アクセス制御バイパスなし', 'アカウントなし', '分析なし'],
   featuresSection: {
-    label: 'フローのために設計',
+    label: 'フロー',
     heading: '次のフレームまでの間に何もなし。',
     description: '意図的なコントロール。杂音なし。すべての機能は閲覧を無駄なくするため存在します。',
   },
@@ -32,7 +32,7 @@ const ja: Dictionary = {
     { title: 'ギャラリーはあなたのまま。', copy: 'すべてローカルで動作。アップロード、分析、閲覧履歴の収集なし。' },
   ],
   demoSection: {
-    label: '約束ではなく製品',
+    label: '実際の製品',
     heading: 'コパイロットの動作を見る。',
     description: '表示するものを選択、ペースを設定、開始 — ギャラリーをどこにも送信せず。',
     videoLabel: 'EroPilot製品デモンストレーション',
@@ -49,17 +49,17 @@ const ja: Dictionary = {
   },
   pricingSection: {
     label: '正直なアップグレード',
-    heading: '無料で始め。\n永遠にkeep。',
-    description: '基本再生は無料。プロは集中プリセットを1回の支払いで追加 — 小さな文字に隠れたサブスクリプションなし。',
-    tierName: 'EroPilot Pro',
-    price: '€9.90',
-    frequency: '一回限り',
-    features: ['無料版すべて', 'シネマプリセット', 'Quick Scanプリセット', 'Video Focusプリセット', 'ワンクリック切替', '定期料金なし'],
+    heading: '無料で始め。\nいつでもアップグレード。',
+    description: '基本再生は無料。プロは月額サブスクリプションで集中プリセットを追加 — いつでも解約可能。',
+    tierName: 'Pro',
+    price: '$7.99',
+    frequency: '/月',
+    features: ['無料版すべて', 'シネマプリセット', 'Quick Scanプリセット', 'Video Focusプリセット', 'ワンクリック切替', 'いつでも解約可能'],
     cta: 'プロを解除',
     disclaimer: 'Stripeによる安全な決済。支払いデータは拡張機能に入りません。',
   },
   faqSection: {
-    label: '明確な回答',
+    label: '回答',
     heading: 'プライベートとはプライベートであること。',
     items: [
       { q: 'どのページで動作しますか？', a: 'EroPilotは標準画像やビデオを表示するページ向けに設計されています。起動したアクティブなタブでのみ動作します。' },

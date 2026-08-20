@@ -20,7 +20,7 @@ const ko: Dictionary = {
   },
   marquee: ['호스트 권한 없음', '원격 코드 없음', '다운로드 없음', '접속 제어 우회 없음', '계정 없음', '분석 없음'],
   featuresSection: {
-    label: '흐름을 위해 설계',
+    label: '흐름',
     heading: '다음 프레임까지 아무것도 없습니다.',
     description: '의도적인 컨트롤. 혼란 없음. 모든 기능은 시청을 수월하게 만들기 위해 존재합니다.',
   },
@@ -32,7 +32,7 @@ const ko: Dictionary = {
     { title: '갤러리는 여전히 당신의 것.', copy: '모두 로컬에서 실행. 업로드, 분석, 검색 기록 수집 없음.' },
   ],
   demoSection: {
-    label: '약속이 아닌 제품',
+    label: '실제 제품',
     heading: '코파일럿이 작업하는 걸 보세요.',
     description: '보여줄 것을 선택하고, 속도를 설정하고, 시작 — 갤러리를 어디에도 보내지 않고.',
     videoLabel: 'EroPilot 제품 시연',
@@ -49,17 +49,17 @@ const ko: Dictionary = {
   },
   pricingSection: {
     label: '정직한 업그레이드',
-    heading: '무료로 시작.\n영원히 유지.',
-    description: '기본 재생은 무료입니다. Pro는 한 번의 결제로 집중 프리셋을 추가 — 작은 글씨에 숨긴 구독 없음.',
-    tierName: 'EroPilot Pro',
-    price: '€9.90',
-    frequency: '일회성',
-    features: ['무료版 모든 것', '시네마 프리셋', 'Quick Scan 프리셋', 'Video Focus 프리셋', '원클릭 전환', '정기 요금 없음'],
+    heading: '무료로 시작.\n언제든지 업그레이드.',
+    description: '기본 재생은 무료입니다. Pro는 월간 구독으로 집중 프리셋을 추가 — 언제든지 해지 가능.',
+    tierName: 'Pro',
+    price: '$7.99',
+    frequency: '/월',
+    features: ['무료版 모든 것', '시네마 프리셋', 'Quick Scan 프리셋', 'Video Focus 프리셋', '원클릭 전환', '언제든지 해지 가능'],
     cta: 'Pro 잠금 해제',
     disclaimer: 'Stripeによる安全な決済. 결제 데이터는 확장 프로그램에 들어가지 않습니다.',
   },
   faqSection: {
-    label: '명확한 답변',
+    label: '답변',
     heading: '프라이빗은 프라이빗이라는 뜻.',
     items: [
       { q: '어떤 페이지에서 작동하나요?', a: 'EroPilot는 표준 이미지나 비디오를 표시하는 페이지용으로 설계되었습니다. 시작한 활성 탭에서만 작동합니다.' },

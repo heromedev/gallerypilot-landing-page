@@ -20,7 +20,7 @@ const fr: Dictionary = {
   },
   marquee: ['Pas de permission hôte', 'Pas de code distant', 'Pas de téléchargement', 'Pas de contournement de contrôle', 'Pas de compte', 'Pas d\'analyse'],
   featuresSection: {
-    label: 'Conçu pour le flux',
+    label: 'Flux',
     heading: 'Rien entre vous et la prochaine image.',
     description: 'Des contrôles délibérés. Pas de désordre. Chaque fonctionnalité existe pour rendre la visualisation sans effort.',
   },
@@ -32,7 +32,7 @@ const fr: Dictionary = {
     { title: 'Votre galerie reste à vous.', copy: 'Tout fonctionne localement. Pas d\'envoi, d\'analyse ou de collecte d\'historique de navigation.' },
   ],
   demoSection: {
-    label: 'Un produit, pas des promesses',
+    label: 'Vrai produit',
     heading: 'Voyez le copilote en action.',
     description: 'Choisissez quoi afficher, réglez le rythme et démarrez — sans envoyer la galerie nulle part.',
     videoLabel: 'Démonstration du produit EroPilot',
@@ -49,17 +49,17 @@ const fr: Dictionary = {
   },
   pricingSection: {
     label: 'Une mise à niveau honnête',
-    heading: 'Commencez gratuitement.\nGardez-le pour toujours.',
-    description: 'La lecture de base est gratuite. Pro ajoute des préréglages ciblés avec un seul paiement — pas d\'abonnement caché dans les petits caractères.',
-    tierName: 'EroPilot Pro',
-    price: '9,90 €',
-    frequency: 'Ponctuel',
-    features: ['Tout dans Gratuit', 'Préréglage Cinéma', 'Préréglage Quick Scan', 'Préréglage Focus Vidéo', 'Basculement en un clic', 'Pas de frais récurrents'],
+    heading: 'Commencez gratuitement.\nMettez à niveau quand vous voulez.',
+    description: 'La lecture de base est gratuite. Pro ajoute des préréglages ciblés avec un abonnement mensuel — annulez quand vous voulez.',
+    tierName: 'Pro',
+    price: '7,99 $',
+    frequency: '/mois',
+    features: ['Tout dans Gratuit', 'Préréglage Cinéma', 'Préréglage Quick Scan', 'Préréglage Focus Vidéo', 'Basculement en un clic', 'Annulation possible'],
     cta: 'Débloquer Pro',
     disclaimer: 'Paiement sécurisé par Stripe. Les données de paiement n\'entrent jamais dans l\'extension.',
   },
   faqSection: {
-    label: 'Réponses claires',
+    label: 'Réponses',
     heading: 'Privé signifie privé.',
     items: [
       { q: 'Sur quelles pages fonctionne-t-il ?', a: 'EroPilot est conçu pour les pages affichant des images ou vidéos standard. Il ne fonctionne que sur l\'onglet actif où vous le démarrez.' },

@@ -20,7 +20,7 @@ const es: Dictionary = {
   },
   marquee: ['Sin permisos de host', 'Sin código remoto', 'Sin descargas', 'Sin evasión de control de acceso', 'Sin cuenta', 'Sin análisis'],
   featuresSection: {
-    label: 'Diseñado para el flujo',
+    label: 'Flujo',
     heading: 'Nada entre tú y la siguiente imagen.',
     description: 'Controles deliberados. Sin desorden. Cada función existe para que la visualización sea sin esfuerzo.',
   },
@@ -32,7 +32,7 @@ const es: Dictionary = {
     { title: 'Tu galería sigue siendo tuya.', copy: 'Todo funciona localmente. Sin subidas, análisis ni recopilación de historial de navegación.' },
   ],
   demoSection: {
-    label: 'Producto, no promesas',
+    label: 'Producto real',
     heading: 'Mira al copiloto en acción.',
     description: 'Elige qué mostrar, establece el ritmo e inicia — sin enviar la galería a ningún lado.',
     videoLabel: 'Demostración del producto EroPilot',
@@ -49,17 +49,17 @@ const es: Dictionary = {
   },
   pricingSection: {
     label: 'Una actualización honesta',
-    heading: 'Empieza gratis.\nGuárdalo para siempre.',
-    description: 'La reproducción básica no cuesta nada. Pro añade ajustes preestablecidos con un solo pago — sin suscripción oculta en la letra pequeña.',
-    tierName: 'EroPilot Pro',
-    price: '9,90 €',
-    frequency: 'Único',
-    features: ['Todo en Gratis', 'Ajuste Cine', 'Ajuste Quick Scan', 'Ajuste Video Focus', 'Cambio con un clic', 'Sin cuotas recurrentes'],
+    heading: 'Empieza gratis.\nMejora cuando quieras.',
+    description: 'La reproducción básica no cuesta nada. Pro añade ajustes preestablecidos con una suscripción mensual — cancela cuando quieras.',
+    tierName: 'Pro',
+    price: '7,99 $',
+    frequency: '/mes',
+    features: ['Todo en Gratis', 'Ajuste Cine', 'Ajuste Quick Scan', 'Ajuste Video Focus', 'Cambio con un clic', 'Cancela cuando quieras'],
     cta: 'Desbloquear Pro',
     disclaimer: 'Pago seguro por Stripe. Los datos de pago nunca entran en la extensión.',
   },
   faqSection: {
-    label: 'Respuestas claras',
+    label: 'Respuestas',
     heading: 'Privado significa privado.',
     items: [
       { q: '¿En qué páginas funciona?', a: 'EroPilot está diseñado para páginas que muestran imágenes o videos estándar. Solo funciona en la pestaña activa donde lo inicias.' },

@@ -1,4 +1,3 @@
-import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Check, Eye, Gauge, Keyboard, LockKeyhole, Play, ShieldCheck, Sparkles } from 'lucide-react'
@@ -12,16 +11,6 @@ const STORE_URL = 'https://chromewebstore.google.com/detail/gallerypilot-%E2%80%
 
 const featureIcons = [Gauge, Play, Eye, Keyboard, LockKeyhole]
 const featureClassName = ['md:col-span-2', '', '', '', 'md:col-span-2']
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: Locale }> }): Promise<Metadata> {
-  const { locale } = await params
-  const t = getDictionary(locale)
-  return {
-    title: t.meta.title,
-    description: t.meta.description,
-    openGraph: { title: t.meta.title, description: t.meta.ogDescription, type: 'website' },
-  }
-}
 
 export default async function Page({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params

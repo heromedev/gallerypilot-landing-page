@@ -20,7 +20,7 @@ const en: Dictionary = {
   },
   marquee: ['No host permissions', 'No remote code', 'No downloads', 'No access-control bypass', 'No account', 'No analytics'],
   featuresSection: {
-    label: 'Built for flow',
+    label: 'Flow',
     heading: 'Nothing between you and the next frame.',
     description: 'Deliberate controls. No clutter. Every feature exists to make viewing feel effortless.',
   },
@@ -32,7 +32,7 @@ const en: Dictionary = {
     { title: 'Your gallery stays yours.', copy: 'Everything runs locally. No uploads, analytics, or browsing history collection.' },
   ],
   demoSection: {
-    label: 'Product, not promises',
+    label: 'Real product',
     heading: 'See the co-pilot at work.',
     description: 'Choose what to show, set the pace, and start — without sending the gallery anywhere.',
     videoLabel: 'EroPilot product demonstration',
@@ -49,17 +49,17 @@ const en: Dictionary = {
   },
   pricingSection: {
     label: 'One honest upgrade',
-    heading: 'Start free.\nKeep it forever.',
-    description: 'Core playback costs nothing. Pro adds focused presets with one payment — no subscription hiding in the small print.',
-    tierName: 'EroPilot Pro',
-    price: '€9.90',
-    frequency: 'One-time',
-    features: ['Everything in Free', 'Cinema preset', 'Quick Scan preset', 'Video Focus preset', 'One-click switching', 'No recurring fee'],
+    heading: 'Start free.\nUpgrade anytime.',
+    description: 'Core playback costs nothing. Pro adds focused presets with a monthly subscription — cancel anytime.',
+    tierName: 'Pro',
+    price: '$7.99',
+    frequency: '/mo',
+    features: ['Everything in Free', 'Cinema preset', 'Quick Scan preset', 'Video Focus preset', 'One-click switching', 'Cancel anytime'],
     cta: 'Unlock Pro',
     disclaimer: 'Secure checkout by Stripe. Payment data never enters the extension.',
   },
   faqSection: {
-    label: 'Clear answers',
+    label: 'Answers',
     heading: 'Private means private.',
     items: [
       { q: 'What pages does it work on?', a: 'EroPilot is designed for pages that display standard images or videos. It runs only on the active tab where you start it.' },
