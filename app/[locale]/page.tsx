@@ -8,8 +8,10 @@ import { AffiliateBanner } from '@/components/affiliate-banner'
 
 import { getDictionary } from '@/i18n/dictionaries'
 import type { Locale } from '@/i18n/types'
-
-const STORE_URL = 'https://chromewebstore.google.com/detail/gallerypilot-%E2%80%94-page-slide/hieimlenfnplaaododphkaogpjohlpob'
+import { StoreCta } from '@/components/store-cta'
+import { SectionTracker } from '@/components/section-tracker'
+import { FaqItem } from '@/components/faq-item'
+import { TierPrice } from '@/components/tier-price'
 
 const featureIcons = [Gauge, Play, Eye, Keyboard, LockKeyhole]
 const featureClassName = ['md:col-span-2', '', '', '', 'md:col-span-2']
@@ -40,7 +42,7 @@ export default async function Page({ params }: { params: Promise<{ locale: Local
               </HeroEnter>
               <HeroEnter delay={0.7}>
                 <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25"><ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" /> {t.hero.ctaAdd}</Link>
+                  <StoreCta placement="hero" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-7 font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25"><ArrowRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" /> {t.hero.ctaAdd}</StoreCta>
                   <Link href="#demo" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-border bg-card px-7 font-semibold transition-colors duration-300 hover:border-primary/60"><Play className="size-4 fill-current transition-transform duration-300 group-hover:scale-110" aria-hidden="true" /> {t.hero.ctaDemo}</Link>
                 </div>
                 <p className="mt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">{t.hero.disclaimer}</p>
@@ -58,16 +60,19 @@ export default async function Page({ params }: { params: Promise<{ locale: Local
           </div>
         </section>
 
-        <section className="overflow-hidden border-b border-border py-6" aria-label="Privacy assurances">
-          <div className="marquee flex w-max gap-10" aria-hidden="true">
-            {[...t.marquee, ...t.marquee, ...t.marquee].map((item, i) => (
-              <span key={i} className="flex items-center gap-10 font-mono text-xs uppercase tracking-widest text-muted-foreground">{item}<span className="text-primary">·</span></span>
-            ))}
-          </div>
-          <p className="sr-only">{t.marquee.join(', ')}</p>
-        </section>
+        <SectionTracker event="permissions_view">
+          <section className="overflow-hidden border-b border-border py-6" aria-label="Privacy assurances">
+            <div className="marquee flex w-max gap-10" aria-hidden="true">
+              {[...t.marquee, ...t.marquee, ...t.marquee].map((item, i) => (
+                <span key={i} className="flex items-center gap-10 font-mono text-xs uppercase tracking-widest text-muted-foreground">{item}<span className="text-primary">·</span></span>
+              ))}
+            </div>
+            <p className="sr-only">{t.marquee.join(', ')}</p>
+          </section>
+        </SectionTracker>
 
-        <section id="features" className="scroll-mt-20 px-5 py-24 lg:px-8 lg:py-32">
+        <SectionTracker event="features_view">
+          <section id="features" className="scroll-mt-20 px-5 py-24 lg:px-8 lg:py-32">
           <div className="mx-auto max-w-7xl">
             <Reveal className="grid gap-5 lg:grid-cols-2 lg:items-end"><div><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.featuresSection.label}</p><h2 className="mt-4 max-w-2xl text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">{t.featuresSection.heading}</h2></div><p className="max-w-lg text-lg leading-relaxed text-muted-foreground lg:justify-self-end">{t.featuresSection.description}</p></Reveal>
             <Stagger className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -83,6 +88,7 @@ export default async function Page({ params }: { params: Promise<{ locale: Local
             </Stagger>
           </div>
         </section>
+        </SectionTracker>
 
         <section id="demo" className="scroll-mt-20 border-y border-border bg-card px-5 py-24 lg:px-8 lg:py-32">
           <div className="mx-auto max-w-6xl">
@@ -97,16 +103,18 @@ export default async function Page({ params }: { params: Promise<{ locale: Local
 
         <section id="how-it-works" className="scroll-mt-20 px-5 py-24 lg:px-8 lg:py-32"><div className="mx-auto max-w-7xl"><Reveal><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.howItWorks.label}</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">{t.howItWorks.heading}</h2></Reveal><Stagger className="mt-14 grid border-y border-border md:grid-cols-3"><ol className="contents">{t.howItWorks.steps.map((step) => <StaggerItem key={step.number}><li className="h-full border-b border-border py-8 last:border-0 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-0"><span className="font-mono text-sm text-primary">{step.number}</span><h3 className="mt-12 text-2xl font-semibold">{step.title}</h3><p className="mt-3 leading-relaxed text-muted-foreground">{step.copy}</p></li></StaggerItem>)}</ol></Stagger></div></section>
 
-        <section id="pricing" className="scroll-mt-20 border-y border-border bg-card px-5 py-24 lg:px-8 lg:py-32"><div className="mx-auto max-w-6xl"><Reveal><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.pricingSection.label}</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl whitespace-pre-line">{t.pricingSection.heading}</h2><p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">{t.pricingSection.description}</p></Reveal><Reveal delay={0.08}><div className="mt-14 grid gap-5 sm:grid-cols-2">{t.pricingSection.tiers.map((tier) => (<article key={tier.name} className={`relative flex flex-col border p-8 transition-all duration-500 sm:p-10 ${tier.badge ? 'border-primary/40 bg-background shadow-2xl shadow-primary/10 hover:shadow-primary/20' : 'border-border bg-background/50 hover:border-border/80'}`}>{tier.badge && <span className="absolute -top-3 left-8 rounded-full bg-primary px-3 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-primary-foreground">{tier.badge}</span>}<div className="flex items-start justify-between gap-6"><div><p className="font-mono text-xs uppercase tracking-widest text-primary">{tier.name}</p><p className="mt-3 text-5xl font-semibold tracking-tight">{tier.price}</p></div><span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{tier.frequency}</span></div><ul className="mt-9 grid flex-1 gap-3">{tier.features.map((x) => <li key={x} className="flex gap-3 text-sm"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />{x}</li>)}</ul>{tier.name === 'Pro' ? <PricingButton label={tier.cta} /> : <a href={STORE_URL} target="_blank" rel="noopener noreferrer" className="group mt-10 flex min-h-13 items-center justify-center gap-2 rounded-full border border-border bg-card px-7 font-semibold transition-colors duration-300 hover:border-primary/60">{tier.cta}</a>}</article>))}</div><p className="mt-6 text-center text-xs text-muted-foreground">{t.pricingSection.disclaimer}</p></Reveal></div></section>
+        <SectionTracker event="pro_section_view">
+        <section id="pricing" className="scroll-mt-20 border-y border-border bg-card px-5 py-24 lg:px-8 lg:py-32"><div className="mx-auto max-w-6xl"><Reveal><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.pricingSection.label}</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl whitespace-pre-line">{t.pricingSection.heading}</h2><p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">{t.pricingSection.description}</p></Reveal><Reveal delay={0.08}><div className="mt-14 grid gap-5 sm:grid-cols-2">{t.pricingSection.tiers.map((tier) => (<article key={tier.name} className={`relative flex flex-col border p-8 transition-all duration-500 sm:p-10 ${tier.badge ? 'border-primary/40 bg-background shadow-2xl shadow-primary/10 hover:shadow-primary/20' : 'border-border bg-background/50 hover:border-border/80'}`}>{tier.badge && <span className="absolute -top-3 left-8 rounded-full bg-primary px-3 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-widest text-primary-foreground">{tier.badge}</span>}<div className="flex items-start justify-between gap-6"><div><p className="font-mono text-xs uppercase tracking-widest text-primary">{tier.name}</p><p className="mt-3 text-5xl font-semibold tracking-normal"><TierPrice value={tier.price} /></p></div><span className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground">{tier.frequency}</span></div><ul className="mt-9 grid flex-1 gap-3">{tier.features.map((x) => <li key={x} className="flex gap-3 text-sm"><Check className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />{x}</li>)}</ul>{tier.name === 'Pro' ? <PricingButton label={tier.cta} /> : <StoreCta placement="pricing" className="group mt-10 flex min-h-13 items-center justify-center gap-2 rounded-full border border-border bg-card px-7 font-semibold transition-colors duration-300 hover:border-primary/60">{tier.cta}</StoreCta>}</article>))}</div><p className="mt-6 text-center text-xs text-muted-foreground">{t.pricingSection.disclaimer}</p></Reveal></div></section>
+        </SectionTracker>
 
-        <section id="faq" className="scroll-mt-20 px-5 py-24 lg:px-8 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.6fr_1fr]"><Reveal><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.faqSection.label}</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">{t.faqSection.heading}</h2></Reveal><Stagger className="border-t border-border">{t.faqSection.items.map((item) => <StaggerItem key={item.q}><details className="group border-b border-border py-6"><summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold transition-colors marker:hidden hover:text-primary">{item.q}<span className="text-primary transition-transform duration-300 group-open:rotate-45">+</span></summary><p className="mt-4 max-w-2xl pr-8 leading-relaxed text-muted-foreground">{item.a}</p></details></StaggerItem>)}</Stagger></div></section>
+        <section id="faq" className="scroll-mt-20 px-5 py-24 lg:px-8 lg:py-32"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.6fr_1fr]"><Reveal><p className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">{t.faqSection.label}</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">{t.faqSection.heading}</h2></Reveal><Stagger className="border-t border-border">{t.faqSection.items.map((item, i) => <StaggerItem key={item.q}><FaqItem question={item.q} answer={item.a} questionId={i} /></StaggerItem>)}</Stagger></div></section>
 
-        <section className="border-t border-border px-5 py-24 lg:px-8"><Reveal className="mx-auto max-w-5xl text-center"><Sparkles className="mx-auto size-7 text-primary" aria-hidden="true" /><h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-6xl whitespace-pre-line">{t.finalCta.heading}</h2><Link href={STORE_URL} target="_blank" rel="noopener noreferrer" className="group mt-9 inline-flex min-h-13 items-center gap-2 rounded-full bg-primary px-8 font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25">{t.finalCta.cta} <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" /></Link></Reveal></section>
+        <section className="border-t border-border px-5 py-24 lg:px-8"><Reveal className="mx-auto max-w-5xl text-center"><Sparkles className="mx-auto size-7 text-primary" aria-hidden="true" /><h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-6xl whitespace-pre-line">{t.finalCta.heading}</h2><StoreCta placement="final_cta" className="group mt-9 inline-flex min-h-13 items-center gap-2 rounded-full bg-primary px-8 font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25">{t.finalCta.cta} <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" /></StoreCta></Reveal></section>
 
         <AffiliateBanner />
       </main>
-      <footer className="border-t border-border px-5 py-10 lg:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between"><div><p className="font-semibold text-foreground">{t.footer.brand}</p><p className="mt-1">{t.footer.tagline}</p></div><nav className="flex flex-wrap gap-6" aria-label="Footer"><Link href={STORE_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-foreground">{t.footer.chromeWebStore}</Link><Link href={`/${locale}/privacy`} className="transition-colors hover:text-foreground">{t.footer.privacy}</Link><Link href="mailto:privacy@gallerypilot.app" className="transition-colors hover:text-foreground">{t.footer.contact}</Link></nav><p>© 2026 EroPilot</p></div></footer>
-      <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" className="fixed inset-x-4 bottom-4 z-30 flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-2xl md:hidden"><ArrowRight className="size-5" aria-hidden="true" /> {t.mobileCta}</Link>
+      <footer className="border-t border-border px-5 py-10 lg:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between"><div><p className="font-semibold text-foreground">{t.footer.brand}</p><p className="mt-1">{t.footer.tagline}</p></div><nav className="flex flex-wrap gap-6" aria-label="Footer"><StoreCta placement="footer" className="transition-colors hover:text-foreground">{t.footer.chromeWebStore}</StoreCta><Link href={`/${locale}/privacy`} className="transition-colors hover:text-foreground">{t.footer.privacy}</Link><Link href="mailto:privacy@gallerypilot.app" className="transition-colors hover:text-foreground">{t.footer.contact}</Link></nav><p>© 2026 EroPilot</p></div></footer>
+      <StoreCta placement="mobile_sticky" className="fixed inset-x-4 bottom-4 z-30 flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-2xl md:hidden"><ArrowRight className="size-5" aria-hidden="true" /> {t.mobileCta}</StoreCta>
     </div>
   )
 }

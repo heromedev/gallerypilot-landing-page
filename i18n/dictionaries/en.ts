@@ -3,7 +3,7 @@ import type { Dictionary } from '../types'
 const en: Dictionary = {
   meta: {
     title: 'EroPilot — Your private gallery on autopilot',
-    description: 'A private, hands-free gallery viewer that runs locally in your browser. No uploads, analytics, or browsing history collection.',
+    description: 'A private, hands-free gallery viewer that runs locally in your browser. No uploads and no browsing-history collection.',
     ogDescription: 'Open. Start. Lean back. Your gallery stays on your device.',
   },
   skipToContent: 'Skip to content',
@@ -14,11 +14,11 @@ const en: Dictionary = {
     subtext: 'Open. Start. Lean back. EroPilot handles the rest — locally, privately, yours.',
     ctaAdd: 'Add to Chrome — Free',
     ctaDemo: 'Watch demo',
-    disclaimer: 'No account · No analytics · Core playback free',
+    disclaimer: 'No account · No gallery or history tracking · Core playback free',
     activeTab: 'ACTIVE TAB',
     alt: 'EroPilot controls over a media gallery',
   },
-  marquee: ['No host permissions', 'No remote code', 'No downloads', 'No access-control bypass', 'No account', 'No analytics'],
+  marquee: ['No host permissions', 'No remote code', 'No downloads', 'No access-control bypass', 'No account', 'No gallery data sent'],
   featuresSection: {
     label: 'Flow',
     heading: 'Nothing between you and the next frame.',
@@ -29,7 +29,7 @@ const en: Dictionary = {
     { title: 'Videos play their way.', copy: 'Watch every video in full or sample a timed preview before moving on.' },
     { title: 'You choose what appears.', copy: 'All media. Video only. Photos only. Switch without breaking your flow.' },
     { title: 'Control without reaching.', copy: 'Pause, skip, resume, and exit with familiar keyboard shortcuts.' },
-    { title: 'Your gallery stays yours.', copy: 'Everything runs locally. No uploads, analytics, or browsing history collection.' },
+    { title: 'Your gallery stays yours.', copy: 'Everything runs locally. No uploads and no browsing-history collection.' },
   ],
   demoSection: {
     label: 'Real product',
@@ -95,7 +95,7 @@ const en: Dictionary = {
     heading: 'Private means private.',
     items: [
       { q: 'What pages does it work on?', a: 'EroPilot is designed for pages that display standard images or videos. It runs only on the active tab where you start it.' },
-      { q: 'Is my browsing data collected?', a: 'No. EroPilot runs locally, uses no analytics, and does not collect browsing history or gallery content.' },
+      { q: 'Is my browsing data collected?', a: 'No. EroPilot runs locally and does not collect browsing history, gallery content, or media URLs. The extension counts feature usage anonymously (for example "a slideshow was started"); this can be turned off anytime in the panel.' },
       { q: 'Does it download media or bypass logins?', a: 'No. It only displays media already available on the open page. It does not download files or bypass access controls.' },
       { q: 'What is included for free?', a: 'Core slideshow playback, viewing modes, keyboard controls, and all privacy features.' },
     ],
@@ -120,8 +120,8 @@ const en: Dictionary = {
     intro: 'EroPilot is private by design. This policy explains what the extension accesses, what we do not collect, and how Pro purchases are handled.',
     effectiveDate: 'Effective date:',
     sections: [
-      { title: '1. Our privacy promise', content: 'EroPilot is designed to run locally in your browser. We do not operate analytics in the extension, build browsing profiles, or collect your browsing history. Gallery and media content you view is processed on your device.' },
-      { title: '2. Information we collect', content: 'The EroPilot extension does not collect, transmit, or sell personal information, browsing history, page content, image URLs, video URLs, or slideshow activity. We do not use advertising trackers or behavioral analytics.' },
+      { title: '1. Our privacy promise', content: 'EroPilot is designed to run locally in your browser. We do not build browsing profiles and we do not collect your browsing history. Gallery and media content you view is processed on your device. The extension records anonymous, aggregate feature-usage statistics (for example "a slideshow was started") that never include gallery URLs, media URLs, or viewing activity; you can disable them at any time from the extension panel.' },
+      { title: '2. Information we collect', content: 'The EroPilot extension does not collect, transmit, or sell personal information, browsing history, page content, image URLs, video URLs, or viewing activity. When usage statistics are enabled, the only data sent is an event name (e.g. slideshow_start), non-identifying playback parameters, and random per-installation identifiers stored locally. We do not use advertising trackers or behavioral analytics.' },
       { title: '3. How the extension works', content: 'EroPilot reads the images and videos already available on the active page so it can present them as a slideshow. This processing happens locally. The extension does not upload gallery content to EroPilot servers.' },
       { title: '4. Browser permissions', content: 'EroPilot requests only the browser permissions needed to identify playable media on the active tab, start the viewer, and remember extension settings. Permission access is used solely to provide features you initiate.' },
       { title: '5. Downloads and access controls', content: 'EroPilot does not download media, bypass logins, defeat paywalls, or grant access to content you cannot already view. It displays content available to you in your current browser session.' },

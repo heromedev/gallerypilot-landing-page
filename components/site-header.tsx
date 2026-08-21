@@ -5,10 +5,9 @@ import { usePathname } from 'next/navigation'
 import { ArrowUpRight, Globe, Menu, Moon, Play, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { MobileNav } from '@/components/reveal'
+import { StoreCta } from '@/components/store-cta'
 import type { Dictionary, Locale } from '@/i18n/types'
 import { locales } from '@/i18n/config'
-
-const STORE_URL = 'https://chromewebstore.google.com/detail/gallerypilot-%E2%80%94-page-slide/hieimlenfnplaaododphkaogpjohlpob'
 
 const localeLabels: Record<Locale, string> = {
   en: 'EN', fr: 'FR', de: 'DE', es: 'ES', pt: 'PT', ja: 'JA', ko: 'KO', ru: 'RU', zh: 'ZH',
@@ -95,7 +94,7 @@ export function SiteHeader({ dictionary: t, locale }: SiteHeaderProps) {
           {pathname === `/${currentLocale}/privacy` ? (
             <Link href={`/${currentLocale}`} className="hidden min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold sm:flex">Back to home</Link>
           ) : (
-            <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" className="hidden min-h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 sm:flex">Add to Chrome <ArrowUpRight className="size-4" aria-hidden="true" /></Link>
+            <StoreCta placement="navbar" className="hidden min-h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition-transform hover:-translate-y-0.5 sm:flex">Add to Chrome <ArrowUpRight className="size-4" aria-hidden="true" /></StoreCta>
           )}
           <button onClick={() => setOpen(!open)} className="flex size-11 items-center justify-center rounded-full border border-border md:hidden" aria-expanded={open} aria-controls="mobile-nav" aria-label="Toggle navigation">
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
@@ -105,7 +104,7 @@ export function SiteHeader({ dictionary: t, locale }: SiteHeaderProps) {
       <MobileNav open={open}>
         <nav id="mobile-nav" className="flex flex-col gap-1 border-t border-border bg-background px-5 py-4" aria-label="Mobile navigation">
           {localizedLinks.map((link) => <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="flex min-h-11 items-center rounded-lg px-3 text-sm font-medium hover:bg-muted">{link.label}</Link>)}
-          <Link href={STORE_URL} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)} className="mt-2 flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">Add to Chrome</Link>
+          <StoreCta placement="mobile_nav" onClick={() => setOpen(false)} className="mt-2 flex min-h-11 items-center justify-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground">Add to Chrome</StoreCta>
         </nav>
       </MobileNav>
     </header>

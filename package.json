@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "ga4:setup": "node scripts/ga4/setup-ga4.mjs",
+    "ga4:dry-run": "node scripts/ga4/setup-ga4.mjs --dry-run"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
