@@ -137,8 +137,8 @@ async function api(method, apiPath, body = undefined, version = 'v1beta') {
   return data;
 }
 
-async function findOrCreate(listPath, listKey, matchFn, describe, createFn) {
-  const existing = await api('GET', listPath);
+async function findOrCreate(listPath, listKey, matchFn, describe, createFn, version = 'v1beta') {
+  const existing = await api('GET', listPath, undefined, version);
   const items = existing[listKey] ?? [];
   const found = items.find(matchFn);
   if (found) {
@@ -185,19 +185,43 @@ const EXT_DIMENSIONS = [
   ['duration_sec', 'Session duration seconds'],
 ];
 
+function includeClause(eventName, parameterConditions = null) {
+  const eventFilter = { eventName };
+  if (parameterConditions) {
+    eventFilter.eventParameterFilterExpression = {
+      andGroup: {
+        filterExpressions: parameterConditions.map(({ name, op, value }) => ({
+          orGroup: {
+            filterExpressions: [{
+              dimensionOrMetricFilter: {
+                fieldName: name,
+                numericFilter: { operation: op, value: { int64Value: String(value) } },
+              },
+            }],
+          },
+        })),
+      },
+    };
+  }
+  return {
+    clauseType: 'INCLUDE',
+    simpleFilter: {
+      scope: 'AUDIENCE_FILTER_SCOPE_WITHIN_SAME_EVENT',
+      filterExpression: {
+        andGroup: {
+          filterExpressions: [{ orGroup: { filterExpressions: [{ eventFilter }] } }],
+        },
+      },
+    },
+  };
+}
+
 function simpleAudience(displayName, description, eventName) {
   return {
     displayName,
     description,
     membershipDurationDays: 30,
-    exclusionClauses: [],
-    inclusionClauses: [{
-      clauseType: 'INCLUDE',
-      simpleCondition: {
-        scope: 'AUDIENCE_SCOPE_WITHIN_SAME_EVENT',
-        condition: `eventName = ${eventName}`,
-      },
-    }],
+    filterClauses: [includeClause(eventName)],
   };
 }
 
@@ -215,44 +239,35 @@ const AUDIENCES_EXT = [
     displayName: 'EXT — Engaged',
     description: 'Sessions that navigated at least 10 media',
     membershipDurationDays: 30,
-    exclusionClauses: [],
-    inclusionClauses: [{
-      clauseType: 'INCLUDE',
-      eventFilter: {
-        eventName: 'session_end',
-        eventParameterConditions: [{
-          paramName: 'media_viewed',
-          comparisons: { operator: 'GREATER_THAN_OR_EQUAL', value: '10', caseSensitive: true },
-        }],
-      },
-    }],
+    filterClauses: [includeClause('session_end', [{ name: 'media_viewed', op: 'GREATER_THAN', value: 9 }])],
   },
 ];
 
 async function ensureProperty(accounts, displayName) {
+  const target = displayName.trim();
   let prop = null;
   for (const account of accounts) {
-    const list = await api('GET', `accounts/${account.name.split('/')[1]}/properties`);
-    prop = (list.properties ?? []).find((p) => p.displayName === displayName);
+    const list = await api('GET', `properties?filter=${encodeURIComponent('parent:' + account.name)}`);
+    prop = (list.properties ?? []).find((p) => (p.displayName || '').trim() === target);
     if (prop) break;
   }
   if (prop) {
-    console.log(`= Property "${displayName}" exists (${prop.name})`);
+    console.log(`= Property "${target}" exists (${prop.name})`);
     return prop;
   }
   if (DRY_RUN) {
-    console.log(`+ Property "${displayName}" MISSING — would create under ${accounts[0].name}`);
+    console.log(`+ Property "${target}" MISSING — would create under ${accounts[0].name}`);
     return null;
   }
-  prop = await api('POST', `accounts/${accounts[0].name.split('/')[1]}/properties`, {
-    displayName,
+  prop = await api('POST', 'properties', {
+    displayName: target,
     parent: accounts[0].name,
     timeZone: TIME_ZONE,
     currencyCode: CURRENCY,
     industryCategory: 'OTHER',
     propertyType: 'PROPERTY_TYPE_ORDINARY',
   });
-  console.log(`+ Property "${displayName}" created (${prop.name})`);
+  console.log(`+ Property "${target}" created (${prop.name})`);
   return prop;
 }
 
@@ -271,29 +286,50 @@ async function ensureWebStream(property) {
   }
   const created = await api('POST', `${property.name}/dataStreams`, {
     type: 'WEB_DATA_STREAM',
+    displayName: 'eromepilot.vercel.app',
     webStreamData: { defaultUri: SITE_URI },
   });
   console.log(`+ Web stream created (${created.webStreamData?.measurementId})`);
   return created;
 }
 
-async function ensureMpStream(property) {
+async function ensureExtWebStream(property) {
+  // The Admin API cannot create MEASUREMENT_PROTOCOL_DATA_STREAM streams;
+  // the standard pattern is a dedicated WEB stream carrying an MP secret.
   const streams = await api('GET', `${property.name}/dataStreams`);
-  const found = (streams.dataStreams ?? []).find(
-    (s) => s.type === 'MEASUREMENT_PROTOCOL_DATA_STREAM',
-  );
-  if (!DRY_RUN && !found) {
-    await api('POST', `${property.name}/dataStreams`, {
-      type: 'MEASUREMENT_PROTOCOL_DATA_STREAM',
-    });
-    return ensureMpStream(property);
+  const found = (streams.dataStreams ?? []).find((s) => s.type === 'WEB_DATA_STREAM');
+  if (found) {
+    console.log(`= Extension web stream exists (${found.webStreamData?.measurementId})`);
+    return found;
   }
-  if (DRY_RUN && !found) {
-    console.log('+ MP stream MISSING — would create');
+  if (DRY_RUN) {
+    console.log('+ Extension web stream MISSING — would create');
     return null;
   }
-  console.log(`= MP stream exists (${found?.name})`);
-  return found;
+  const created = await api('POST', `${property.name}/dataStreams`, {
+    type: 'WEB_DATA_STREAM',
+    displayName: 'EroPilot extension telemetry',
+    webStreamData: { defaultUri: 'https://eromepilot.vercel.app' },
+  });
+  console.log(`+ Extension web stream created (${created.webStreamData?.measurementId})`);
+  return created;
+}
+
+async function ensureUserDataAck(property) {
+  if (DRY_RUN || !property) return;
+  try {
+    await api('POST', `${property.name}:acknowledgeUserDataCollection`, {
+      acknowledgement:
+        'I acknowledge that I have the necessary privacy disclosures and rights from ' +
+        'my end users for the collection and processing of their data, including the ' +
+        'association of such data with the visitation information Google Analytics ' +
+        'collects from my site and/or app property.',
+    });
+    console.log('+ User-data-collection attested');
+  } catch (err) {
+    console.log('! User-data-collection attestation failed:');
+    console.log(JSON.stringify(err?.apiError ?? { message: err?.message }, null, 2));
+  }
 }
 
 async function ensureMpSecret(property, stream) {
@@ -350,6 +386,7 @@ async function ensureAudiences(property, audiences) {
       (a) => a.displayName === audience.displayName,
       `audience "${audience.displayName}"`,
       () => api('POST', `${property.name}/audiences`, audience, 'v1alpha'),
+      'v1alpha',
     );
   }
 }
@@ -359,6 +396,7 @@ async function main() {
 
   const sa = await loadServiceAccount();
   const adc = sa ? null : await loadAdc();
+  if (!sa && KEY_FILE) die(`Key file unreadable or missing: ${KEY_FILE}`);
   if (sa) console.log(`Auth: service account ${sa.client_email}`);
   else if (adc) console.log('Auth: gcloud application-default credentials');
   else {
@@ -380,9 +418,29 @@ async function main() {
 
   TOKEN = sa ? await getServiceAccountToken(sa) : await getAdcToken(adc);
 
-  const accountsRes = await api('GET', 'accounts');
-  const accounts = accountsRes.accounts ?? [];
-  if (!accounts.length) die('No GA4 account visible for these credentials. Grant the account (not just a property) in GA4 Admin.');
+  let accountsRes = await api('GET', 'accounts');
+  let accounts = accountsRes.accounts ?? [];
+
+  const ownerIdx = args.indexOf('--owner-email');
+  const OWNER_EMAIL = ownerIdx >= 0 ? args[ownerIdx + 1] : 'mathis.zerbib@gmail.com';
+
+  if (!accounts.length && !DRY_RUN) {
+    console.log('No GA4 account visible — creating a dedicated account...');
+    const account = await api('POST', 'accounts', {
+      displayName: 'GalleryPilot',
+      regionCode: process.env.GA_REGION || 'FR',
+    }, 'v1alpha');
+    await api('POST', `${account.name}/userLinks`, {
+      emailAddress: OWNER_EMAIL,
+      roles: ['predefinedRoles/admin'],
+    }, 'v1alpha');
+    console.log(`+ Account "${account.displayName}" created (${account.name})`);
+    console.log(`+ ${OWNER_EMAIL} added as ADMIN`);
+    accountsRes = await api('GET', 'accounts');
+    accounts = accountsRes.accounts ?? [];
+  }
+
+  if (!accounts.length) die('No GA4 account visible for these credentials.');
   console.log(`GA4 account: ${accounts[0].displayName} (${accounts[0].name})\n`);
 
   console.log('Website surface:');
@@ -396,10 +454,10 @@ async function main() {
 
   console.log('\nExtension surface:');
   const extProp = await ensureProperty(accounts, 'GP — Extension');
-  const mpStream = extProp ? await ensureMpStream(extProp) : null;
-  const mpSecret = await ensureMpSecret(extProp, mpStream);
-  const extMeasurementId = (mpStream?.webStreamData?.measurementId)
-    ?? (extProp ? (await api('GET', `${mpStream?.name}`))?.webStreamData?.measurementId : null);
+  const extStream = extProp ? await ensureExtWebStream(extProp) : null;
+  await ensureUserDataAck(extProp);
+  const mpSecret = await ensureMpSecret(extProp, extStream);
+  const extMeasurementId = extStream?.webStreamData?.measurementId ?? null;
   if (extProp && !DRY_RUN) {
     await ensureKeyEvents(extProp, EXT_KEY_EVENTS);
     await ensureDimensions(extProp, EXT_DIMENSIONS);

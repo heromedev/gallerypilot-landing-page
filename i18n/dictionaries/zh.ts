@@ -100,6 +100,7 @@ const zh: Dictionary = {
     brand: 'EroPilot',
     tagline: '您的私密画廊副驾驶。',
     chromeWebStore: 'Chrome 网上应用店',
+    partners: '合作伙伴',
     privacy: '隐私',
     contact: '联系',
   },

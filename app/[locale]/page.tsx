@@ -4,14 +4,14 @@ import { ArrowRight, Check, Eye, Gauge, Keyboard, LockKeyhole, Play, ShieldCheck
 import { HeroEnter, Parallax, Reveal, ScrollProgress, Stagger, StaggerItem, WordReveal } from '@/components/reveal'
 import { SiteHeader } from '@/components/site-header'
 import { PricingButton } from '@/components/pricing-button'
-import { AffiliateBanner } from '@/components/affiliate-banner'
-
 import { getDictionary } from '@/i18n/dictionaries'
 import type { Locale } from '@/i18n/types'
 import { StoreCta } from '@/components/store-cta'
 import { SectionTracker } from '@/components/section-tracker'
 import { FaqItem } from '@/components/faq-item'
 import { TierPrice } from '@/components/tier-price'
+
+const AFFILIATE_PARTNERS_URL = 'https://chaturbate.com/in/?tour=LQps&campaign=bnSAi&track=default&room=eromedev'
 
 const featureIcons = [Gauge, Play, Eye, Keyboard, LockKeyhole]
 const featureClassName = ['md:col-span-2', '', '', '', 'md:col-span-2']
@@ -111,9 +111,8 @@ export default async function Page({ params }: { params: Promise<{ locale: Local
 
         <section className="border-t border-border px-5 py-24 lg:px-8"><Reveal className="mx-auto max-w-5xl text-center"><Sparkles className="mx-auto size-7 text-primary" aria-hidden="true" /><h2 className="mt-6 text-balance text-4xl font-semibold tracking-[-0.04em] sm:text-6xl whitespace-pre-line">{t.finalCta.heading}</h2><StoreCta placement="final_cta" className="group mt-9 inline-flex min-h-13 items-center gap-2 rounded-full bg-primary px-8 font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/25">{t.finalCta.cta} <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" /></StoreCta></Reveal></section>
 
-        <AffiliateBanner />
       </main>
-      <footer className="border-t border-border px-5 py-10 lg:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between"><div><p className="font-semibold text-foreground">{t.footer.brand}</p><p className="mt-1">{t.footer.tagline}</p></div><nav className="flex flex-wrap gap-6" aria-label="Footer"><StoreCta placement="footer" className="transition-colors hover:text-foreground">{t.footer.chromeWebStore}</StoreCta><Link href={`/${locale}/privacy`} className="transition-colors hover:text-foreground">{t.footer.privacy}</Link><Link href="mailto:privacy@gallerypilot.app" className="transition-colors hover:text-foreground">{t.footer.contact}</Link></nav><p>© 2026 EroPilot</p></div></footer>
+      <footer className="border-t border-border px-5 py-10 lg:px-8"><div className="mx-auto flex max-w-7xl flex-col gap-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between"><div><p className="font-semibold text-foreground">{t.footer.brand}</p><p className="mt-1">{t.footer.tagline}</p></div><nav className="flex flex-wrap gap-6" aria-label="Footer"><StoreCta placement="footer" className="transition-colors hover:text-foreground">{t.footer.chromeWebStore}</StoreCta><a href={AFFILIATE_PARTNERS_URL} target="_blank" rel="noopener noreferrer sponsored" className="transition-colors hover:text-foreground">{t.footer.partners}</a><Link href={`/${locale}/privacy`} className="transition-colors hover:text-foreground">{t.footer.privacy}</Link><Link href="mailto:privacy@gallerypilot.app" className="transition-colors hover:text-foreground">{t.footer.contact}</Link></nav><p>© 2026 EroPilot</p></div></footer>
       <StoreCta placement="mobile_sticky" className="fixed inset-x-4 bottom-4 z-30 flex min-h-12 items-center justify-center gap-2 rounded-full bg-primary px-6 font-semibold text-primary-foreground shadow-2xl md:hidden"><ArrowRight className="size-5" aria-hidden="true" /> {t.mobileCta}</StoreCta>
     </div>
   )

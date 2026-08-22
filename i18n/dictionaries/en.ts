@@ -108,6 +108,7 @@ const en: Dictionary = {
     brand: 'EroPilot',
     tagline: 'Your private gallery co-pilot.',
     chromeWebStore: 'Chrome Web Store',
+    partners: 'Partners',
     privacy: 'Privacy',
     contact: 'Contact',
   },

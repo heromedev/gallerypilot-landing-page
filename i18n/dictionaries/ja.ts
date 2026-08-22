@@ -100,6 +100,7 @@ const ja: Dictionary = {
     brand: 'EroPilot',
     tagline: 'プライベートギャラリーコパイロット。',
     chromeWebStore: 'Chrome Web Store',
+    partners: 'パートナー',
     privacy: 'プライバシー',
     contact: 'お問い合わせ',
   },

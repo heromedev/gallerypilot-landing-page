@@ -100,6 +100,7 @@ const ko: Dictionary = {
     brand: 'EroPilot',
     tagline: '프라이빗 갤러리 코파일럿.',
     chromeWebStore: 'Chrome Web Store',
+    partners: '파트너',
     privacy: '프라이버시',
     contact: '문의',
   },

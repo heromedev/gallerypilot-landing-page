@@ -63,6 +63,7 @@ export type Dictionary = {
     brand: string
     tagline: string
     chromeWebStore: string
+    partners: string
     privacy: string
     contact: string
   }
